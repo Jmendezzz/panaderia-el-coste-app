@@ -6,11 +6,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Iniciar Sesión</title>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         <link rel="stylesheet" href="style/login.css">
     </head>
     <body>
         <input type="hidden" id="status" value="<%=request.getSession().getAttribute("status") %>">
         <input type="hidden" id="error" value="<%=request.getSession().getAttribute("error") %>">
+
 
 
         <div class="container__form flex__column" >
@@ -28,39 +31,7 @@
             </form>
 
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-         <script type="text/javascript">
-
-            let status = document.getElementById("status").value;
-
-            let error = document.getElementById("error").value;
-
-            console.log(typeof(error));
-
-            console.log((error==="null"));
-
-            if(status==="failed"){
-                sweetAlert.fire(
-                    {
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Credenciales invalidas!'
-                    }
-                );
-            }
-
-            if(!(error==="null") ){
-                sweetAlert.fire(
-                    {
-                    icon: 'warning',
-                    title: 'Oops...',
-                    text: error
-                    }
-                );
-
-            }
-
-        </script>
+        <script src="frontend/login.js" type="module"></script>
 
     </body>
 </html>

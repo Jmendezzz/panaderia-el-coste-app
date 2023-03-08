@@ -8,11 +8,11 @@ import com.example.panaderiaelcoste.service.ServiceManager;
 import java.util.ArrayList;
 
 
-public class LoginImpl implements LoginService {
+public class LoginImp implements LoginService {
     ServiceManager serviceManager;
     ArrayList<Employee> employees;
 
-    public LoginImpl(ServiceManager serviceManager){
+    public LoginImp(ServiceManager serviceManager){
         this.serviceManager = serviceManager;
         employees = serviceManager.getEmployeeService().getEmployees();
 
@@ -31,10 +31,13 @@ public class LoginImpl implements LoginService {
 
     @Override
     public boolean verifyAdminLoginCredentials(String username, String password) throws LoginException {
+
+        System.out.println(Admin.loginCredentials.getUsername().equals(username));
+        System.out.println(Admin.loginCredentials.getPassword().equals(password));
         if(username.equals("") || password.equals("")) throw new LoginException("Debe completar los campos");
         return Admin.loginCredentials.getUsername().equals(username)
                 &&
-                Admin.loginCredentials.getUsername().equals(password);
+                Admin.loginCredentials.getPassword().equals(password);
 
     }
 }

@@ -7,10 +7,10 @@ import com.example.panaderiaelcoste.service.EmployeeService;
 import java.util.ArrayList;
 
 
-public class EmployeeImpl implements EmployeeService {
+public class EmployeeImp implements EmployeeService {
 
     ArrayList<Employee> employees = new ArrayList<>();
-    public EmployeeImpl(){
+    public EmployeeImp(){
 
         employees.add(new Employee("Juan","123","jugmeen23@gmail.com",2,new LoginCredential("juan","1234")));
 

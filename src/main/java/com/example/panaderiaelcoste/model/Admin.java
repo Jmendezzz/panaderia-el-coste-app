@@ -7,5 +7,5 @@ import lombok.Getter;
 public class Admin {
 
 
-      public static LoginCredential loginCredentials = new LoginCredential(AdminCredentials.USERNAME.getValue(), AdminCredentials.USERNAME.getValue());
+      public static LoginCredential loginCredentials = new LoginCredential(AdminCredentials.USERNAME.getValue(), AdminCredentials.PASSWORD.getValue());
 }
