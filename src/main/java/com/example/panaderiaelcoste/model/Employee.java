@@ -12,11 +12,10 @@ public class Employee {
     private  int itemsSold;
     private LoginCredential loginCredentials;
 
-    public Employee(String name, String id, String email, int itemsSold, LoginCredential loginCredentials) {
+    public Employee(String name, String id, String email, LoginCredential loginCredentials) {
         this.name = name;
         this.id = id;
         this.email = email;
-        this.itemsSold = itemsSold;
         this.loginCredentials = loginCredentials;
     }
 }

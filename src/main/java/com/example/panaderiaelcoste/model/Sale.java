@@ -13,9 +13,18 @@ public class Sale {
 
     private double total;
 
-    public Sale(Employee employee, ArrayList<SaleDetail> saleDetails, double total) {
+    public Sale(Employee employee, ArrayList<SaleDetail> saleDetails) {
         this.employee = employee;
         this.saleDetails = saleDetails;
-        this.total = total;
+        this.total = calculateTotal(saleDetails);
+    }
+    double calculateTotal(ArrayList<SaleDetail> saleDetails){
+        double total=0;
+
+        for(SaleDetail saleDetail : saleDetails){
+            total+= saleDetail.getAmount()*saleDetail.getProduct().getPrice();
+        }
+        return total;
+
     }
 }

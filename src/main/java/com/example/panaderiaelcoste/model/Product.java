@@ -6,6 +6,9 @@ import lombok.Setter;
 
 @Getter @Setter
 public class Product {
+    private  static  int idCount;
+
+    private String id;
     private String name;
     private int avaibleAmount;
     private String urlImage;
@@ -19,5 +22,7 @@ public class Product {
         this.status = status;
         this.price = price;
         this.urlImage = urlImage;
+        this.id = String.valueOf(idCount);
+        idCount++;
     }
 }

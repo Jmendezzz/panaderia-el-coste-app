@@ -30,7 +30,7 @@ public class LoginController extends HttpServlet {
 
         try {
 
-            setSendRedirect(userName,password,session,response);
+            setSendRedirect(userName,password,session,response,request);
 
         } catch (LoginException e) {
             session.setAttribute("error","Debe completar todos los campos para el inicio de sesión!");
@@ -40,7 +40,7 @@ public class LoginController extends HttpServlet {
 
     }
 
-    public void setSendRedirect(String userName, String password,HttpSession session,HttpServletResponse response) throws LoginException, IOException {
+    public void setSendRedirect(String userName, String password,HttpSession session,HttpServletResponse response,HttpServletRequest request) throws LoginException, IOException {
 
         if(serviceManager.getLoginService().verifyAdminLoginCredentials(userName,password)) {
 
@@ -49,6 +49,10 @@ public class LoginController extends HttpServlet {
         }else if (serviceManager.getLoginService().verifyEmployeeLoginCredentials(userName, password)) {
 
             response.sendRedirect("employee.jsp");
+
+            request.getSession().setAttribute("employeeName",serviceManager.getLoginService().getEmployeeLoggedIn().getName());
+
+
 
         } else {
 

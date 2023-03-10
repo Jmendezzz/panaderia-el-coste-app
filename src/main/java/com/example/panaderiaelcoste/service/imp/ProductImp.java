@@ -19,5 +19,21 @@ public class ProductImp implements ProductService {
         products.add(product);
     }
 
+    @Override
+    public void deleteProductById(String id){
+
+        Product product = products.stream()
+                .filter(p->p.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+
+
+        products.remove(product);
+        System.out.println(products.size());
+
+
+
+    }
+
 
 }
