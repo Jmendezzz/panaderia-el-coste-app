@@ -49,10 +49,6 @@ if(products.length>0){
                     <td>${product.price}</td> 
                     <td>
                         <div class="button_container">
-                           
-                            <form action="/products" method="post" class="form__button__item">
-                                <button type="submit"><img src="images/edit.png"></button>
-                            </form>
                             <form action="/products" method="post" class="form__button__item" >
                                 <button type="submit" name="idDelete" value="${product.id}"><img src="images/delete.png"></button>
                             </form>
@@ -72,10 +68,3 @@ if(products.length>0){
 }
 
 
-
-const editButtonHandler = (id)=>{
-    sessionStorage.setItem("method","DELETE");
-
-
-
-}

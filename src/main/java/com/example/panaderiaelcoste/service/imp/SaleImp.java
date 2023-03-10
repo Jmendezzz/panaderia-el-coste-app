@@ -22,7 +22,15 @@ public class SaleImp implements SaleService {
 
         SaleValidation.verifyItemAmount(saleDetails);
         sales.add(new Sale(employee,saleDetails));
+        decrementUnities(saleDetails);
         employee.setItemsSold(employee.getItemsSold()+1);
 
+
+    }
+
+    public void decrementUnities(ArrayList<SaleDetail> saleDetails){
+        for (SaleDetail saleDetail : saleDetails){
+            saleDetail.setAmount(saleDetail.getProduct().getAvaibleAmount()-saleDetail.getAmount());
+        }
     }
 }

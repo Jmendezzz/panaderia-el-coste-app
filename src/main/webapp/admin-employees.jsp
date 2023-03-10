@@ -32,12 +32,9 @@
 
     <div class="nav__links">
 
-
         <a href="products.jsp">PRODUCTOS</a>
 
         <a href="admin-employees.jsp">EMPLEADOS</a>
-
-        <a href="admin-sales.jsp">VENTAS</a>
 
 
     </div>

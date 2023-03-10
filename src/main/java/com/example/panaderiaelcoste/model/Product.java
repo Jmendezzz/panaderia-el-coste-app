@@ -25,4 +25,5 @@ public class Product {
         this.id = String.valueOf(idCount);
         idCount++;
     }
+    public Product(){}
 }

@@ -24,10 +24,7 @@ if(employees.length>0){
                     <td>${emplooye.itemsSold}</td> 
                     <td>
                         <div class="button_container">
-                           
-                            <form action="/admin-employees" method="post" class="form__button__item">
-                                <button type="submit"><img src="images/edit.png"></button>
-                            </form>
+                        
                             <form action="/admin-employees" method="post" class="form__button__item" >
                                 <button type="submit" name="idDeleteEmployee" value="${emplooye.id}"><img src="images/delete.png"></button>
                             </form>

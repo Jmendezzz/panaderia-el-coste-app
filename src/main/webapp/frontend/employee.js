@@ -27,7 +27,7 @@ const fillSaleContainer= ()=>{
 
         content+=`
                 <div class="previsualizacion__item" onclick="deleteSaleDetail(${product.product.id})">
-                    <p>${product.product.name} <span>x${product.cantidad} unidades</span> <span>$${parseFloat(product.product.price*product.cantidad) }</span> </p>
+                    <p>${product.product.name} <span>x${product.amount} unidades</span> <span>$${parseFloat(product.product.price*product.amount) }</span> </p>
                 </div>
         `;
     }
@@ -54,7 +54,7 @@ const addProductHandler = (id)=>{
 const calculateTotal = ()=>{
     let acum= 0;
     for(let saleDetail of productsAddedToSale ){
-        acum+= saleDetail.product.price * saleDetail.cantidad;
+        acum+= saleDetail.product.price * saleDetail.amount;
     }
     document.getElementById("total").innerText=acum;
 }
@@ -78,9 +78,13 @@ if(products.length>0){
 
 botonEnviar.addEventListener("click",(e)=>{
     e.preventDefault();
-    document.getElementById("data-sale-input").value = JSON.stringify(productsAddedToSale);
-    alert(document.getElementById("data-sale-input").value);
-    botonEnviar.form.submit();
+    if(productsAddedToSale.length>0){
+        document.getElementById("data-sale-input").value = JSON.stringify(productsAddedToSale);
+
+        botonEnviar.form.submit();
+
+    }else alert("Debe agregar un producto para generar una compra");
+
 
 });
 

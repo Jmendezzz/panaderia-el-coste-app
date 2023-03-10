@@ -28,7 +28,6 @@
 
             <a href="admin-employees.jsp">EMPLEADOS</a>
 
-            <a href="admin-sales.jsp">VENTAS</a>
 
 
         </div>
