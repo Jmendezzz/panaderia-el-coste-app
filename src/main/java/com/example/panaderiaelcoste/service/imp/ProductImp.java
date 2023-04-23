@@ -1,35 +1,46 @@
 package com.example.panaderiaelcoste.service.imp;
 
+import com.example.panaderiaelcoste.exception.ServiceJdbcException;
 import com.example.panaderiaelcoste.model.Product;
+import com.example.panaderiaelcoste.repository.ProductRepositoryImpl;
 import com.example.panaderiaelcoste.service.ProductService;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProductImp implements ProductService {
 
-    private ArrayList<Product> products = new ArrayList<>();
+
+
+    private ProductRepositoryImpl productRepository;
+    public ProductImp (Connection connection){
+
+        System.out.println("ConnectioN: "+ connection);
+
+        productRepository = new ProductRepositoryImpl(connection);
+
+    }
 
     @Override
-    public ArrayList<Product> getProducts (){
-        return products;
+    public List<Product> getProducts (){
+        try{
+            return productRepository.findAll();
+        } catch (SQLException e) {
+            throw new ServiceJdbcException(e.getMessage(),e.getCause());
+        }
     }
 
     @Override
     public void addProduct(Product product) {
-        products.add(product);
+        System.out.println("**"+product.getPrice());
+        productRepository.save(product);
     }
 
     @Override
     public void deleteProductById(String id){
-
-        Product product = products.stream()
-                .filter(p->p.getId().equals(id))
-                .findFirst()
-                .orElse(null);
-
-
-        products.remove(product);
-        System.out.println(products.size());
+        productRepository.delete(Long.valueOf(id));
 
 
 

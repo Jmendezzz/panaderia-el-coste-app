@@ -2,6 +2,7 @@ package com.example.panaderiaelcoste.controller;
 
 import com.example.panaderiaelcoste.model.Product;
 import com.example.panaderiaelcoste.service.ServiceManager;
+import com.example.panaderiaelcoste.service.imp.ProductImp;
 import com.example.panaderiaelcoste.singleton.Singleton;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,17 +15,20 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
-
+import java.util.List;
 
 
 @WebServlet(name = "products",value = "/products")
 public class ProductController extends HttpServlet{
 
-    ServiceManager serviceManager = Singleton.getInstance();
-    ArrayList<String> errors = new ArrayList<>();
-    ObjectMapper objectMapper = new ObjectMapper();
+    private ServiceManager serviceManager = Singleton.getInstance();
+    private ArrayList<String> errors = new ArrayList<>();
+    private ObjectMapper objectMapper = new ObjectMapper();
+
+    private ProductImp productService=null;
 
 
 
@@ -57,8 +61,7 @@ public class ProductController extends HttpServlet{
 
                 if(!(errors.size() >0)){
                     Product product = createProduct(name,avaibleAmount,status,price,urlImage);
-                    System.out.println(product.getName());
-                    serviceManager.getProductService().addProduct(product);
+                    productService.addProduct(product);
 
                     doGet(request,response);
                 }
@@ -92,11 +95,19 @@ public class ProductController extends HttpServlet{
     }
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws JsonProcessingException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        ArrayList<Product> products = serviceManager.getProductService().getProducts();
-        System.out.println(objectMapper.writeValueAsString(products));
+        if(productService == null){
+            Connection conn = (Connection) request.getAttribute("conn");
+            productService = new ProductImp(conn);
+
+        }
+
+
+
+        List<Product> products = productService.getProducts();
         System.out.println("Getting...");
+        getServletContext().getRequestDispatcher("/products.jsp").forward(request,response);
         HttpSession session = request.getSession();
         session.setAttribute("products",objectMapper.writeValueAsString(products));
     }
@@ -108,7 +119,7 @@ public class ProductController extends HttpServlet{
 
         String id = request.getParameter("idDelete");
 
-        serviceManager.getProductService().deleteProductById(id);
+        productService.deleteProductById(id);
 
 
     }

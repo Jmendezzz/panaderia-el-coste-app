@@ -8,7 +8,7 @@ import lombok.Setter;
 public class Product {
     private  static  int idCount;
 
-    private String id;
+    private Long id;
     private String name;
     private int avaibleAmount;
     private String urlImage;
@@ -22,7 +22,7 @@ public class Product {
         this.status = status;
         this.price = price;
         this.urlImage = urlImage;
-        this.id = String.valueOf(idCount);
+        this.id = (long) idCount;
         idCount++;
     }
     public Product(){}

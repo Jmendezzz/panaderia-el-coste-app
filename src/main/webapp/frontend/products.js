@@ -51,7 +51,7 @@ if(products.length>0){
                         <div class="button_container">
                             <form action="/products" method="post" class="form__button__item" >
                                 <button type="submit" name="idDelete" value="${product.id}"><img src="images/delete.png"></button>
-                            </form>
+                            </form>                                                                                                                           
                         </div>
                     </td>
 

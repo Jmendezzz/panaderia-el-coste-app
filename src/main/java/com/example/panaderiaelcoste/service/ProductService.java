@@ -3,9 +3,10 @@ package com.example.panaderiaelcoste.service;
 import com.example.panaderiaelcoste.model.Product;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface ProductService {
-    ArrayList<Product> getProducts();
+    List<Product> getProducts();
 
     void addProduct(Product product);
 

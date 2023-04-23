@@ -14,14 +14,13 @@ public class ServiceManager {
     private final  LoginService loginService;
     private final  EmployeeService employeeService;
 
-    private final ProductService productService;
+
 
     private final SaleService saleService;
 
     public ServiceManager(){
         employeeService = new EmployeeImp();
         loginService = new LoginImp(this);
-        productService = new ProductImp();
         saleService = new SaleImp();
 
 

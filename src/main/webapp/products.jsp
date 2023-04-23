@@ -24,6 +24,7 @@
     }
     if(request.getSession().getAttribute("products")!=null){
         products = request.getSession().getAttribute("products").toString();
+        System.out.println("JSP PRODUCTS:"+ products);
     }
 %>
     <input type="hidden" id="errors" value=<%=errors%>>
